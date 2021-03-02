@@ -29,7 +29,7 @@ namespace MyFitUI
         {
             InitializeComponent();
             watch = new Stopwatch();
-            timer = new Timer(100);
+            timer = new Timer(1);
             timer.Elapsed += DisplayTimeEvent;
         }       
 
@@ -50,7 +50,7 @@ namespace MyFitUI
             {
                 watch.Stop();
                 timer.Enabled = false;
-                var elapsedTime = (watch.ElapsedMilliseconds / 1000.0).ToString("0.00");
+                var elapsedTime = (watch.ElapsedMilliseconds / 1000.0).ToString("0:00:00");
                 tbTimer.Text = elapsedTime;
                
                 resultsLB.Items.Add(elapsedTime);

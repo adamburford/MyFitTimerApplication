@@ -19,11 +19,11 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Label x:Name="label" Content="My Fit Timer" HorizontalAlignment="Left" Margin="188,37,0,0" VerticalAlignment="Top" Height="43" Width="154" FontWeight="Bold" FontSize="24" Grid.Column="1"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="188,217,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="startTimer" Background="#FF5CDA62" Grid.Column="1" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="278,217,0,0" VerticalAlignment="Top" Height="34" Width="74" RenderTransformOrigin="0.486,0.531" Click="stopTimer" Background="#FFF54E4E" Grid.Column="1" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="tbTimer" HorizontalAlignment="Left" Margin="175,113,0,0" Text="00.0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Height="71" FontSize="36" FontWeight="Bold" IsReadOnly="True" Opacity="1" Background="Black" Foreground="#FFCBC4C4" Padding="50,15,0,0" Grid.Column="1" FontFamily="./Font/#DS-DIGIB" ScrollViewer.CanContentScroll="True"/>
-        <ListBox x:Name="resultsLB" Margin="175,326,214,57" FontSize="16" Grid.Column="1" VerticalContentAlignment="Center" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False" />
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="133,0,0,0" VerticalAlignment="Center" Height="34" Width="74" Click="startTimer" Background="#FF5CDA62" Grid.Column="1" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="314,0,0,0" VerticalAlignment="Center" Height="34" Width="74" RenderTransformOrigin="0.486,0.531" Click="stopTimer" Background="#FFF54E4E" Grid.Column="1" FontSize="14" FontWeight="Bold"/>
+        <TextBox x:Name="tbTimer" HorizontalAlignment="Left" Margin="96,113,0,0" Text="00:00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Height="71" FontSize="36" FontWeight="Bold" IsReadOnly="True" Opacity="1" Background="Black" Foreground="#FFCBC4C4" Padding="50,15,0,0" Grid.Column="1" FontFamily="./Font/#DS-DIGIB" ScrollViewer.CanContentScroll="True"/>
+        <ListBox x:Name="resultsLB" Margin="133,278,177,57" FontSize="16" Grid.Column="1" VerticalContentAlignment="Center" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False" />
 
-        <Label x:Name="label1" Content="Previous Times" HorizontalAlignment="Left" Margin="188,272,0,0" VerticalAlignment="Top" Width="216" FontSize="18" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Height="34"/>
+        <Label x:Name="label1" Content="Previous Times" HorizontalAlignment="Left" Margin="188,239,0,0" VerticalAlignment="Top" Width="216" FontSize="18" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Height="34"/>
     </Grid>
 </Window>
