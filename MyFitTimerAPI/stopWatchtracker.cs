@@ -25,7 +25,7 @@ namespace MyFitTimerAPI
 
             }
             else
-                throw new InvalidOperationException("Timer is running");
+                throw new InvalidOperationException("Timer`sSs running");
 
         }
         public long elapsedMilliseconds { get; }
