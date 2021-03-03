@@ -2,46 +2,38 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace MyFitTimerAPI
 {
-    class stopWatchtracker
+    public class StopWatchTracker
     {
 
-        public DateTime startTime { get; private set; }
+        public DateTime? StartTime { get; private set; }
 
-        public Run LastRun{ get; set; }
+        public TimeSpan LastRun{ get; set; }
 
-        public void start()
+        public void Start()
         {
-            if (startTime == null)
-                startTime = DateTime.Now;
-        }
-        public void stop()
+            if (StartTime == null)
+                StartTime = DateTime.Now;
+			else
+				throw new InvalidOperationException("Timer already started");
+		}
+        public void Stop()
          {
-            if (startTime != null)
+            if (StartTime != null)
             {
-
-                LastRun = new Run(DateTime.Now);
-
+                LastRun = DateTime.Now - StartTime.Value;
+				StartTime = null;
             }
             else
-                throw new InvalidOperationException("Timer`sSs running");
+                throw new InvalidOperationException("Timer not started");
 
         }
-        public long elapsedMilliseconds { get; }
-        public TimeSpan elapsed { get; }
-        public long elapsedTicks { get; }
-        public bool IsRunning { get; }
+        public long ElapsedMilliseconds { get { return StartTime == null ? 0 : (long)(DateTime.Now - StartTime.Value).TotalMilliseconds; } }
 
-    }
+        public TimeSpan Elapsed { get { return StartTime == null ? TimeSpan.Zero : DateTime.Now - StartTime.Value; } }
+        public bool IsRunning {	get	{ return StartTime != null;	} }
 
-    public class Run
-    {
-        private DateTime dateTime;
-
-        public Run(DateTime dateTime)
-        {
-            this.dateTime = dateTime;
-        }
     }
 }

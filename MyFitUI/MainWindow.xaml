@@ -5,25 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyFitUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="113*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF2D7673" Offset="1"/>
-                <GradientStop Color="#FF76D8D4" Offset="0.009"/>
-                <GradientStop Color="#FF2BBDB8" Offset="0.708"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Label x:Name="label" Content="My Fit Timer" HorizontalAlignment="Left" Margin="188,37,0,0" VerticalAlignment="Top" Height="43" Width="154" FontWeight="Bold" FontSize="24" Grid.Column="1"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="133,0,0,0" VerticalAlignment="Center" Height="34" Width="74" Click="startTimer" Background="#FF5CDA62" Grid.Column="1" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="314,0,0,0" VerticalAlignment="Center" Height="34" Width="74" RenderTransformOrigin="0.486,0.531" Click="stopTimer" Background="#FFF54E4E" Grid.Column="1" FontSize="14" FontWeight="Bold"/>
-        <TextBox x:Name="tbTimer" HorizontalAlignment="Left" Margin="96,113,0,0" Text="00:00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" Height="71" FontSize="36" FontWeight="Bold" IsReadOnly="True" Opacity="1" Background="Black" Foreground="#FFCBC4C4" Padding="50,15,0,0" Grid.Column="1" FontFamily="./Font/#DS-DIGIB" ScrollViewer.CanContentScroll="True"/>
-        <ListBox x:Name="resultsLB" Margin="133,278,177,57" FontSize="16" Grid.Column="1" VerticalContentAlignment="Center" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="False" />
+        Title="MainWindow" Height="496" Width="576"
+		Loaded="Window_Loaded"
+		Closing="Window_Closing">
+	<Window.Resources>
+		<CollectionViewSource x:Key="runsViewSource"/>
+	</Window.Resources>
+	<DockPanel>
+		<DockPanel.Background>
+			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="#FF2D7673" Offset="1"/>
+				<GradientStop Color="#FF76D8D4" Offset="0.009"/>
+				<GradientStop Color="#FF2BBDB8" Offset="0.708"/>
+			</LinearGradientBrush>
+		</DockPanel.Background>
+		<StackPanel DockPanel.Dock="Top">
+			<Label x:Name="label" Content="My Fit Timer" HorizontalAlignment="Center" Margin="10" FontWeight="Bold" FontSize="24" Grid.Column="1"/>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Button x:Name="startButton" Content="Start" HorizontalAlignment="Center" Margin="10" Padding="5" VerticalAlignment="Center" Height="35" Width="75"  Click="startTimer" Background="#FF5CDA62" FontWeight="Bold" FontSize="14"/>
+				<Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Center" Margin="10" Padding="5" VerticalAlignment="Center" Height="35" Width="75"  Click="stopTimer" Background="#FFF54E4E" FontSize="14" FontWeight="Bold"/>
+			</StackPanel>
 
-        <Label x:Name="label1" Content="Previous Times" HorizontalAlignment="Left" Margin="188,239,0,0" VerticalAlignment="Top" Width="216" FontSize="18" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.Column="1" Height="34"/>
-    </Grid>
+			<TextBox x:Name="tbTimer" HorizontalAlignment="Center" Margin="5" Text="0:00:00:00.0000000" Padding="5" TextWrapping="Wrap" VerticalAlignment="Center" Width="400" Height="75" FontSize="36" FontWeight="Bold" IsReadOnly="True" Opacity="1" Background="Black" Foreground="#FFCBC4C4"  Grid.Column="1" FontFamily="Consolas" TextAlignment="Center" VerticalContentAlignment="Center"/>
+			<Label x:Name="label1" Content="Previous Times" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Target="{Binding ElementName=results}" />	
+		</StackPanel>
+
+		<DataGrid x:Name="results" Margin="10" MinHeight="200" ItemsSource="{Binding Source={StaticResource runsViewSource}}" Height="Auto" AutoGenerateColumns="False" Width="300" ColumnWidth="Auto" IsReadOnly="True" DockPanel.Dock="Bottom">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding RunId}" Header="Run" Width="2*"/>
+				<DataGridTextColumn Binding="{Binding Time}" Header="Elapsed Time" Width="8*" />
+			</DataGrid.Columns>
+		</DataGrid>
+
+	</DockPanel>
 </Window>
