@@ -7,7 +7,7 @@ namespace MyFitTimerAPI
 
         public DateTime? StartTime { get; private set; }
 
-        public TimeSpan LastRun{ get; set; }
+        public TimeSpan LastRun { get; set; }
 
         public void Start()
         {
