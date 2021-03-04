@@ -6,6 +6,7 @@ using MyFitTimerData;
 using MyFitTimerData.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Windows.Data;
+using System;
 
 namespace MyFitUI
 {
@@ -18,7 +19,7 @@ namespace MyFitUI
         private Timer timer;
 		private readonly TimerContext _context = new TimerContext();
 		private CollectionViewSource runsViewSource;
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace MyFitUI
 
         public void DisplayTimeEvent(object sender, ElapsedEventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(() => tbTimer.Text = watch.Elapsed.ToString("G"));
+            Application.Current.Dispatcher.Invoke(() => tbTimer.Text = watch.Elapsed.ToString(@"mm\:ss\.ff"));
         }
 
         private void startTimer(object sender, RoutedEventArgs e)
@@ -61,7 +62,7 @@ namespace MyFitUI
                 watch.Stop();
                 timer.Enabled = false;
 
-				tbTimer.Text = watch.LastRun.ToString("G");
+                tbTimer.Text = watch.LastRun.ToString(@"mm\:ss\.ff");
 
 				_context.Runs.Add(new Run(watch.LastRun));
 
@@ -71,7 +72,5 @@ namespace MyFitUI
 				results.ScrollIntoView(results.SelectedItem);
 			}
         }
-
-
 	}
 }
