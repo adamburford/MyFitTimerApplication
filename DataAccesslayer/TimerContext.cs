@@ -12,6 +12,5 @@ namespace MyFitTimerData
 			optionsBuilder.UseSqlite("Data Source=runs.db");
 			base.OnConfiguring(optionsBuilder);
 		}
-
 	}
 }

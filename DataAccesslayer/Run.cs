@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyFitTimerData.Models
 {
@@ -33,6 +31,5 @@ namespace MyFitTimerData.Models
 		{
 			Time = stopTime - startTime;
 		}
-
 	}
 }
