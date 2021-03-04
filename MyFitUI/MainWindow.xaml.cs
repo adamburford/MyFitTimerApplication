@@ -10,22 +10,22 @@ using System;
 
 namespace MyFitUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        private StopWatchTracker watch;
-        private Timer timer;
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		private StopWatchTracker watch;
+		private Timer timer;
 		private readonly TimerContext _context = new TimerContext();
 		private CollectionViewSource runsViewSource;
-        
-        public MainWindow()
-        {
-            InitializeComponent();
-            watch = new StopWatchTracker();
-            timer = new Timer(1);
-            timer.Elapsed += DisplayTimeEvent;
+
+		public MainWindow()
+		{
+			InitializeComponent();
+			watch = new StopWatchTracker();
+			timer = new Timer(1);
+			timer.Elapsed += DisplayTimeEvent;
 			runsViewSource = (CollectionViewSource)FindResource(nameof(runsViewSource));
 
 		}
@@ -41,10 +41,16 @@ namespace MyFitUI
 			timer.Dispose();
 		}
 
-        public void DisplayTimeEvent(object sender, ElapsedEventArgs e)
-        {
-            Application.Current.Dispatcher.Invoke(() => tbTimer.Text = watch.Elapsed.ToString(@"mm\:ss\.ff"));
+		public void DisplayTimeEvent(object sender, ElapsedEventArgs e)
+		{
+			Application.Current.Dispatcher.Invoke(UpdateTimer);
         }
+
+		public void UpdateTimer()
+		{
+			if (timer.Enabled)
+				tbTimer.Text = watch.Elapsed.ToString(@"mm\:ss\.ff");
+		}
 
         private void startTimer(object sender, RoutedEventArgs e)
         {
@@ -59,8 +65,9 @@ namespace MyFitUI
         {
             if (watch.IsRunning)
             {
-                watch.Stop();
-                timer.Enabled = false;
+				timer.Enabled = false;               
+				watch.Stop();
+
 
                 tbTimer.Text = watch.LastRun.ToString(@"mm\:ss\.ff");
 
